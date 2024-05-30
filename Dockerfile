@@ -1,6 +1,7 @@
 FROM php:8.3-apache
 
-COPY . /var/www/html
+WORKDIR /usr/share/nginx/html
+COPY . /usr/share/nginx/html
 
 RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
 
