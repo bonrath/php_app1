@@ -2,20 +2,20 @@
 include("functions.php");
 
 if(isset($_POST['title']) && $_POST['description']) {
-  include("db.php");
-  $title = $_POST['title'];
-  $description = $_POST['description'];
-  $sql = "INSERT INTO mytable(title, description) VALUES ('$title', '$description')";
-  $result = $conn->query($sql);
-  
-  // Check if the query was successful
-  if ($result) {
-    // Redirect to index.php if the record was created successfully
-    header("Location: /var/www/html/index.php");
-    exit(); // Exit immediately after sending headers
-  } else {
-    echo "Error: ". $sql. "<br>". $conn->error;
-  }
+    include("db.php");
+    $title = $_POST['title'];
+    $description = $_POST['description'];
+    $sql = "INSERT INTO mytable(title, description) VALUES ('$title', '$description')";
+    $result = $conn->query($sql);
+    
+    if ($result) {
+        // Data added successfully, redirect to index.php
+        header("Location: index.php");
+        exit(); // Ensure that no further code is executed after the redirect
+    } else {
+        // Error occurred while adding data
+        echo "Error: ". $sql. "<br>". $conn->error;
+    }
 }
 ?>
 
@@ -24,21 +24,22 @@ if(isset($_POST['title']) && $_POST['description']) {
 
 <!-- Main section  -->
 <div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <form action="create.php" method="post">
-        <div class="form-group">
-          <label for="title">Title:</label>
-          <input type="text" class="form-control" id="title" name="title">
+    <div class="row">
+        <div class="col-md-12">
+            <form action="create.php" method="post">
+                <div class="form-group">
+                    <label for="title">Title:</label>
+                    <input type="text" class="form-control" id="title" name="title">
+                </div>
+                <div class="form-group">
+                    <label for="description">Description:</label>
+                    <textarea type="text" class="form-control" rows=5 id="description" name="description"> </textarea>
+                </div>
+                
+                <button type="submit" class="btn btn-default">Submit</button>
+            </form>
         </div>
-        <div class="form-group">
-          <label for="description">Description:</label>
-          <textarea type="text" class="form-control" rows=5 id="description" name="description"></textarea>
-        </div>
-        <button type="submit" class="btn btn-default">Submit</button>
-      </form>
     </div>
-  </div>
 </div>
 
 <!-- Footer section  -->
