@@ -22,7 +22,7 @@
 #       - db_data:/var/lib/mysql
 
 
-name: Bonrath APP
+name: phpapp
 services:
   web:
     build:
