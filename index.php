@@ -10,22 +10,21 @@ $result = $conn->query($sql);
 
 ?>
 <?php
-// Check if a delete request has been made
-    if (isset($_GET['delete_id'])) {
-        $delete_id = $_GET['delete_id'];
-        $stmt = $conn->prepare("DELETE FROM mytable WHERE id = ?");
-        $stmt->bind_param("i", $delete_id);
+if (isset($_GET['delete_id'])) {
+    $delete_id = $_GET['delete_id'];
+    $stmt = $conn->prepare("DELETE FROM mytable WHERE id = ?");
+    $stmt->bind_param("i", $delete_id);
 
     if ($stmt->execute()) {
-    // Redirect back to index.php after deletion
-    header("Location: index.php");
-    exit();
+        // Redirect back to index.php after deletion
+        header("Location: index.php");
+        exit();
     } else {
-    echo "Error deleting record: ". $stmt->error;
+        echo "Error deleting record: " . $stmt->error;
     }
 
     $stmt->close();
-    }
+}
 ?>
 
 
