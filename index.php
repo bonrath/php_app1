@@ -10,26 +10,24 @@ $result = $conn->query($sql);
 
 ?>
 <?php
-if (isset($_POST['id'])) {
-    include("db.php");
-    $id = $_POST['id'];
+// Check if a delete request has been made
+    if (isset($_GET['delete_id'])) {
+        $delete_id = $_GET['delete_id'];
+        $stmt = $conn->prepare("DELETE FROM mytable WHERE id = ?");
+        $stmt->bind_param("i", $delete_id);
 
-    // Use prepared statement to prevent SQL injection
-    $stmt = $conn->prepare("DELETE FROM mytable WHERE id = ?");
-    $stmt->bind_param("i", $id);
-    
     if ($stmt->execute()) {
-        // Data deleted successfully, redirect to index.php
-        header("Location: index.php");
-        exit(); // Ensure that no further code is executed after the redirect
+    // Redirect back to index.php after deletion
+    header("Location: index.php");
+    exit();
     } else {
-        // Error occurred while deleting data
-        echo "Error: ". $stmt->error;
+    echo "Error deleting record: ". $stmt->error;
     }
 
     $stmt->close();
-}
+    }
 ?>
+
 
 
 
@@ -59,8 +57,8 @@ if (isset($_POST['id'])) {
                             echo "<td>".$i."</td>";
                             echo "<td>".$row["title"]."</td>";
                             echo "<td>".$row["description"]."</td>";
-                            echo "<td><a href='edit.php?id=".$row["id"]."' class='btn btn-primary'>Edit</a></td>";
-                            echo "<td><a href='index.php?id=".$row["id"]."' class='btn btn-primary'>Delete</a></td>";
+                            echo "<td><a href='edit.php?id=".$row["id"]."' class='btn btn-primary'>Edit</a>
+                            <a href='#' onclick='confirmDelete(".$row["id"].")' class='btn btn-danger'>Delete</a></td>";
                             echo "</tr>";
                             $i++;
                         }
@@ -76,3 +74,10 @@ if (isset($_POST['id'])) {
 
     <!-- Footer section  -->
 <?php include("footer.php") ?>
+<script>
+function confirmDelete(id) {
+if (confirm("Do you really want to delete this record?")) {
+        window. location. href = 'index. php?delete_id=' + id;
+    }
+}
+</script>
