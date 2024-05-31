@@ -72,7 +72,7 @@ if (isset($_GET['delete_id'])) {
                             echo "<td>".$i."</td>";
                             echo "<td>".$row["title"]."</td>";
                             echo "<td>".$row["description"]."</td>";
-                            echo "<td><a href='edit.php?id=".$row["id"]."' class='btn btn-primary'>Edit</a></td>;
+                            echo "<td><a href='edit.php?id=".$row["id"]."' class='btn btn-primary'>Edit</a>S
                             <a href='#' onclick='confirmDelete(".$row["id"].")' class='btn btn-danger'>Delete</a></td>";
                             echo "</tr>";
                             $i++;
@@ -85,7 +85,7 @@ if (isset($_GET['delete_id'])) {
                 ?>
             </tbody>
         </table>
-    </div>
+    </div>S
 
     <!-- Footer section  -->
 <?php include("footer.php") ?>
