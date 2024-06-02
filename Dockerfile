@@ -35,11 +35,11 @@ RUN apt-get update && apt-get upgrade -y \
 RUN chown -R www-data:www-data /var/www/html
 
 # Apache Directory Configuration
-RUN echo '<Directory /var/www/html>\n\
-    Options Indexes FollowSymLinks\n\
-    AllowOverride All\n\
-    Require all granted\n\
-</Directory>' >> /etc/apache2/apache2.conf
+# RUN echo '<Directory /var/www/html>\n\
+#     Options Indexes FollowSymLinks\n\
+#     AllowOverride All\n\
+#     Require all granted\n\
+# </Directory>' >> /etc/apache2/apache2.conf
 
 # Set environment variables for MySQL
 ENV MYSQL_DB=mysqldb
