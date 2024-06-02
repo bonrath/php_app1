@@ -62,7 +62,7 @@
 # volumes:
 #   db_data:
 
-  name: phpapp
+name: phpapp
 services:
   web:
     build:
