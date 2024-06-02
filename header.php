@@ -25,7 +25,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a href="index.php" class="navbar-brand">App3</a>
+            <a href="index.php" class="navbar-brand">App4</a>
         </div>
 
         <div class="collapse navbar-collapse" style="display: none!important;" id="navbar-collapse">
