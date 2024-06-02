@@ -22,8 +22,7 @@
 #       - db_data:/var/lib/mysql
 
 
-version: '3.8'
-
+name: phpapp
 services:
   web:
     build:
@@ -35,6 +34,8 @@ services:
       - ./:/var/www/html
     depends_on:
       - db
+    #networks:
+      #phpappnet:
 
   db:
     image: mysql:8.0
@@ -49,6 +50,8 @@ services:
       MYSQL_PASSWORD: pass
     volumes:
       - db_data:/var/lib/mysql
+    #networks:
+      #phpappnet:
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
@@ -59,9 +62,13 @@ services:
       MYSQL_ROOT_PASSWORD: root
     depends_on:
       - db
+    #networks:
+      #phpappnet:
+
+#networks:
+  #phpappnet:
 
 volumes:
   db_data:
-
 
 
